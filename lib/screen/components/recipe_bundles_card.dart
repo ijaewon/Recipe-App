@@ -5,14 +5,20 @@ import 'package:recipe_app/models/RecipeBundle.dart';
 import '../../size_config.dart';
 
 class RecipeBundleCard extends StatelessWidget {
+  final RecipeBundle recipeBundle;
+  final Function press;
+
+  const RecipeBundleCard({Key key, this.recipeBundle, this.press})
+      : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     double defaultSize = SizeConfig.defaultSize;
-    return AspectRatio(
-      aspectRatio: 1.65,
+    return GestureDetector(
+      onTap: press,
       child: Container(
         decoration: BoxDecoration(
-          color: recipeBundles[0].color,
+          color: recipeBundle.color,
           borderRadius: BorderRadius.circular(defaultSize * 1.8),
         ),
         child: Row(
@@ -22,10 +28,11 @@ class RecipeBundleCard extends StatelessWidget {
               // EdgeInsets.all(double) : 좌,우,위,아래 여백을 균등하게 준다.
               padding: EdgeInsets.all(defaultSize * 2), //20
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Spacer(),
                   Text(
-                    recipeBundles[0].title,
+                    recipeBundle.title,
                     style: TextStyle(
                       fontSize: defaultSize * 2.2,
                       color: Colors.white,
@@ -37,7 +44,7 @@ class RecipeBundleCard extends StatelessWidget {
                     height: defaultSize * 0.5,
                   ),
                   Text(
-                    recipeBundles[0].description,
+                    recipeBundle.description,
                     style: TextStyle(
                       color: Colors.white54,
                     ),
@@ -47,13 +54,13 @@ class RecipeBundleCard extends StatelessWidget {
                   Spacer(),
                   buildInfoRow(defaultSize,
                       iconSrc: "assets/icons/pot.svg",
-                      text: "${recipeBundles[0].recipes} Recipes"),
+                      text: "${recipeBundle.recipes} Recipes"),
                   SizedBox(
                     height: defaultSize * 0.5,
                   ),
                   buildInfoRow(defaultSize,
                       iconSrc: "assets/icons/chef.svg",
-                      text: "${recipeBundles[0].chefs} Chefs"),
+                      text: "${recipeBundle.chefs} Chefs"),
                   Spacer()
                 ],
               ),
