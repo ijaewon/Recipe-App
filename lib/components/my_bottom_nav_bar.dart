@@ -34,13 +34,9 @@ class MyBottomNavBar extends StatelessWidget {
                       isActive: navItems.selectedIndex == index ? true : false,
                       icon: navItems.items[index].icon,
                       press: () {
-                        navItems.chnageNavIndex(index: index);
                         if (navItems.items[index].destinationChecker())
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      navItems.items[index].destination));
+                          navItems.chnageNavIndex(
+                              index: index, context: context);
                       }))),
         ),
       ),

@@ -19,10 +19,17 @@ class NavItem {
 
 // If we made any changes here Provider package rebuild those widget those use this NavItems
 class NavItems extends ChangeNotifier {
-  int selectedIndex = 0;
+  int selectedIndex = 0, previousSelectedIndex = 0;
 
-  void chnageNavIndex({int index}) {
+  void chnageNavIndex({int index, @required BuildContext context}) {
     selectedIndex = index;
+    // If we click on another page, It's working.
+    if (selectedIndex != previousSelectedIndex) {
+      Navigator.pop(context);
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => items[index].destination));
+    }
+    previousSelectedIndex = selectedIndex;
     // if any changes made it notify widgets that use the value
     notifyListeners();
   }
