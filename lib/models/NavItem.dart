@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_app/screen/home/home_screen.dart';
+import 'package:recipe_app/screen/profile/profile_screen.dart';
 
 class NavItem {
   final int id;
@@ -18,7 +19,7 @@ class NavItem {
 
 // If we made any changes here Provider package rebuild those widget those use this NavItems
 class NavItems extends ChangeNotifier {
-  int selectedIndex = 1;
+  int selectedIndex = 0;
 
   void chnageNavIndex({int index}) {
     selectedIndex = index;
@@ -47,7 +48,7 @@ class NavItems extends ChangeNotifier {
     NavItem(
       id: 5,
       icon: "assets/icons/user.svg",
-      // destination: ProfileScreen(),
+      destination: ProfileScreen(),
     ),
   ];
 }
